@@ -1,0 +1,46 @@
+body {
+	background: url("../images/bklogin1.jpg");
+	font-family: 'Quicksand';
+	text-align: center;
+	color: black;
+}
+.chon {
+    width: 60%;
+    margin: 0 auto;
+    background: white;
+    padding: 50px;
+	color: black;
+	border-style: groove;
+	margin-top:100px;
+	text-align: left;
+}
+.cauhoi{
+	color: black;
+	font-size : 25px;
+}
+input[type="radio"] {
+	
+}
+.dapan{
+	color: rgb(65, 65, 65);
+	font-size : 15px;
+}
+
+input[type="submit"] {
+	margin-top: 40px;
+	font-size: 16px;
+	padding: 10px 65px;
+	background-color: rgb(30, 120, 10);
+	color: #FFF;
+	border: none;
+	border-radius: 0px;
+	outline: none;
+	float:none;
+	cursor: pointer;
+	margin-left: 35%;
+}
+input[type="submit"]:hover {
+    background-color: rgb(230, 199, 0);
+	font-weight: bold;
+    color: rgb(30, 120, 10);
+}

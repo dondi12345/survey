@@ -1,0 +1,223 @@
+body {
+  margin: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+header {
+	background-color: #343a40;
+	position: relative;
+	padding: 0.5rem 1rem;
+}
+
+
+.logo {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+  color: #fff;
+  width:20%;
+  display : inline-block;
+  margin-left:20px;
+}
+
+.logo:hover, .logo:focus {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+
+#canhan{
+	padding-top:0.5rem;
+	color:rgb(181, 177, 177);
+	float:right;
+	text-align:center;
+}
+
+#canhan span{
+	margin-right: 20px;
+}
+
+.thanhben {
+  width: 14%;
+  background-color: #212529;
+  margin:0px;
+  float:left;
+  padding-top:3;
+  height: 100vh;
+  position:absolute;
+}
+
+.muc{
+	margin-top:40px;
+	font-size: 1.15rem;
+	margin-top: 20px;
+}
+
+.muc a{
+	color: rgb(209, 207, 209);
+}
+
+.muc a:hover{
+	color: #fff;
+}
+
+.muc .light {
+	color: #fff;
+}
+
+.trangcanhan{
+	
+}
+
+.index{
+	width:86%;
+	position:absolute;
+	margin-left:14%;
+}
+
+.daidien{
+	text-align:center;
+	margin-top:60px;
+}
+
+.avatar{
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+}
+
+.ten{
+	width:100%;
+}
+
+.ten a{
+	color:black;
+	display:inline;
+	font-size:25px;
+	margin-left:10px;
+}
+
+.ten h1{
+	color:black;
+	display:inline;
+}
+
+.thontincn{
+	margin-top:90px;
+	margin-left:35%;
+	font-size:20px;
+	margin-bottom:50px;
+	
+}
+
+table {
+  border-collapse: collapse;
+  text-align:center-left ;
+}
+
+ .thontincn th, .thontincn td {
+  border-bottom: 1px solid black;
+}
+
+.thontincn .fsua{
+	border-bottom: none;
+}
+
+.thontincn .fsua a{
+	color:blue;
+}
+
+.thontincn .huy a{
+	color:red;
+}
+
+
+.thongtincn, tr, td{
+	padding-right:50px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.thongtincn, tr, td{
+	padding-right:20px;
+}
+
+.tieude{
+	width:100%;
+	text-align:center;
+	margin-top:30px;
+	margin-bottom:50px;
+}
+
+.khuvuc{
+	margin-left:50px;
+}
+
+.thanhpho{
+	border-style: groove;
+}
+
+.danhsach{
+	margin-left:20%;
+	font-size:15px;
+}
+
+.lthongke {
+	font-size:20px;
+	margin-left:20%;
+}
+
+.lthongke .cauhoi {
+	font-size:1.5em;
+	color: blue;
+}
+.ldapan{
+	margin-left:20px;
+}
+
+.llichsu{
+	margin-left:35%;
+	margin-top:70px;
+}
+.listls td {
+	border-bottom: 1px solid black;
+	padding-bottom:10px;
+	padding-top:10px;
+}
+
+.xacnhan {
+	color:blue;
+	border: none;
+	outline: none;
+	float:none;
+	cursor: pointer;
+	background:white;
+	font-size:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
