@@ -6,7 +6,7 @@
 ?>
 
 <?php
-	$query="SELECT idchude,thongtin,more,pub FROM chude group by idchude DESC";
+	$query="SELECT idchude,thongtin,more FROM chude where pub=0 group by idchude DESC";
 	$result = mysqli_query($link,$query);
 	
 ?>
@@ -41,7 +41,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="thongke light" href="thongke.php?id=<?php echo $iduser ?>">
+		<a class="thongke" href="thongke.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-chart-line"></i>
 			<span>Thống kê</span>
         </a>
@@ -62,7 +62,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+		<a class="taochude light" href="taochude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-bars"></i>
 			<span>Tạo chủ đề</span>
         </a>
@@ -72,35 +72,62 @@
 
 <div class="index">
 	<div class="tieude">
-		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
+		<h1>Chủ đề đang tạo!   <i class="fas fa-edit"></i></h1>
 		
 	</div>
-	<form action=""  method="post">
+	<form action="" method="post">
+	<div class="themcd">
+	
+	<table>
+			
+			<tr>
 
-	<div class="lthongke">
-	<?php
-			if(mysqli_num_rows($result)>0){
-				while($row = mysqli_fetch_assoc($result)){ ?>
-					<table>
-					<tr>
-						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
-							<i class="fas fa-arrow-right"></i>
-							<span><?php echo $row['thongtin']; ?></span>
-						</a>
-						<p class="more"><?php echo $row['more']; ?></td>
-					</tr>
-					</table>
-					 <?php
+				<td><input type="text" class="scd" name="nhapcd" value=""></td>
+				
+			</tr>
+			<tr>
+				<td class="texttop"><span>Thông tin: </span>
+				<input type="text" class="smore" name="nhaptt" value=""></td>
+				
+			</tr>	
+	</table>
+	
+	</div>
+		<table class="thontincn">
+			<tr>
+			<td class="fsua huy">
+				<a class="isua" href="taochude.php?id=<?php echo $iduser ?>">
+				<i class="fas fa-window-close"></i>
+				<span>Hủy bỏ</span>
+				</a>
+			</td>
+			<td class="fsua">
+				<button class="xacnhan">
+					<a class="isua" href="taochude.php?id=<?php echo $iduser ?>">
+					<i class="fas fa-check-square"></i>
+					<span>Xác Nhận</span>
+					</a>
+				</button>
+				
+			</td>     
+		</tr>
+		</table>
+		</form>
+		<?php
+				if(isset($_POST["nhapcd"])){
+					$nhapcd="";
+					$nhaptt="";
+					if(isset($_POST["nhapcd"])) {  $nhapcd=$_POST["nhapcd"]; }
+					if(isset($_POST["nhaptt"])) {  $nhaptt=$_POST["nhaptt"]; }
+					if($nhapcd!=""){
+					$querych="INSERT INTO chude (`thongtin`,`more`,`pub`) VALUES ('$nhapcd','$nhaptt',0);";
+					$resultch = mysqli_query($link,$querych);
+					}
+					header("location:taochude.php?id=".$iduser);
 				}
-	}?>
-	</form>
+			?>
 	
 	
-	
-	
-	
-</div>
-
 <?php
 
 ?>

@@ -30,7 +30,7 @@
 <body>
 	<?php
 		if(isset($_GET['f'])){
-			$f=1;
+			$f=$_GET['f'];
 		}else{
 			$f=0;
 		}
@@ -41,41 +41,48 @@
 			<div class="wrap-login100 p-t-50 p-b-90">
 				<form class="login100-form validate-form flex-sb flex-w" method="post">
 					<span class="login100-form-title p-b-51">
-						Login
+						SIGN IN
 					</span>
 
-					
+					<div>
+							<a href="index.php" class="txt1">
+								Đăng Nhập
+							</a>
+						</div>
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>
+					<?php if($f==3){?>
+					<p id="faillogin"> User đã tồn tại</p>
 					
+					<?php }?>
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
 						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					
-					<div class="flex-sb-m w-full p-t-3 p-b-24">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="dangky.php" class="txt1">
-								Đăng Ký
-							</a>
-						</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<input class="input100" type="password" name="rpass" placeholder="Re-password">
+						<span class="focus-input100"></span>
 					</div>
-					<?php if($f==1){?>
-					<p id="faillogin"> Login fail</p>
+					<?php if($f==4){?>
+					<p id="faillogin"> Mật khẩu lớn hơn 6 ký tự</p>
+					
 					<?php }?>
+					<?php if($f==2){?>
+					<p id="faillogin"> Nhập lại mật khẩu</p>
+					
+					<?php }?>
+					<?php if($f==1){?>
+					<p id="dk"> Đăng ký thành công!</p>
+					
+					<?php }?>	
+					
 					<div class="container-login100-form-btn m-t-17">
 						<button class="login100-form-btn">
-							Login
+							Đăng ký
 						</button>
 					</div>
 
@@ -83,7 +90,9 @@
 				<?php
 					if(isset($_POST['username'])){
 						if(isset($_POST['pass'])){
-							header("location:duyet.php?tk=".$_POST['username']."&mk=".$_POST['pass']);
+							if(isset($_POST['rpass'])){
+								header("location:duyetdk.php?tk=".$_POST['username']."&mk=".$_POST['pass']."&rmk=".$_POST['rpass']);
+							}
 						}
 					}
 				?>

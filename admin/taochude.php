@@ -6,7 +6,7 @@
 ?>
 
 <?php
-	$query="SELECT idchude,thongtin,more,pub FROM chude group by idchude DESC";
+	$query="SELECT idchude,thongtin,more FROM chude where pub=0 group by idchude DESC";
 	$result = mysqli_query($link,$query);
 	
 ?>
@@ -41,7 +41,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="thongke light" href="thongke.php?id=<?php echo $iduser ?>">
+		<a class="thongke" href="thongke.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-chart-line"></i>
 			<span>Thống kê</span>
         </a>
@@ -62,7 +62,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+		<a class="taochude light" href="taochude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-bars"></i>
 			<span>Tạo chủ đề</span>
         </a>
@@ -72,9 +72,15 @@
 
 <div class="index">
 	<div class="tieude">
-		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
+		<h1>Chủ đề đang tạo!   <i class="fas fa-edit"></i></h1>
 		
 	</div>
+	<div class="them">
+			<a class="isua" href="themchude.php?id=<?php echo $iduser ?>">
+			<i class="fas fa-plus-square"></i>
+			<span>Thêm</span>
+			</a>
+		</div>
 	<form action=""  method="post">
 
 	<div class="lthongke">
@@ -83,9 +89,15 @@
 				while($row = mysqli_fetch_assoc($result)){ ?>
 					<table>
 					<tr>
-						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
+						<td><a class="" href="cauhoidangtao.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
 							<i class="fas fa-arrow-right"></i>
 							<span><?php echo $row['thongtin']; ?></span>
+						</a>
+						<a class="" href="suataochude.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
+							<i class="fas fa-edit"></i>
+						</a>
+						<a class="" href="unlock.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
+							<i class="fas fa-plus"></i>
 						</a>
 						<p class="more"><?php echo $row['more']; ?></td>
 					</tr>
@@ -94,7 +106,6 @@
 				}
 	}?>
 	</form>
-	
 	
 	
 	

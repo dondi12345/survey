@@ -55,9 +55,16 @@
     </li>
 	
 	<li class="muc">
-		<a class="lichsu" href="cauhoi.php?id=<?php echo $iduser ?>">
-			<i class="far fa-question-circle"></i>
-			<span>Câu hỏi</span>
+		<a class="chude" href="chude.php?id=<?php echo $iduser ?>">
+			<i class="fas fa-stream"></i>
+			<span>Chủ đề</span>
+        </a>
+    </li>
+	
+	<li class="muc">
+		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+			<i class="fas fa-bars"></i>
+			<span>Tạo chủ đề</span>
         </a>
     </li>
 </ul>
@@ -70,7 +77,7 @@
 		</div>
 	</div>
 	<form action="" method="post">
-<table class="thontincn">
+		<table class="thontincn">
 		<tr>
 			<td><b>Họ tên:</b></td>
 			<td><input class ="iptt" type="text" name="ten" value ="<?php echo $row['ten']?>"></td>
@@ -103,7 +110,7 @@
 				</a>
 			</td>
 			<td class="fsua">
-				<button class="xacnhan">
+				<button class="xacnhan" name ="xacnhan" >
 					<a class="isua" href="m_index.php?id=<?php echo $iduser ?>">
 					<i class="fas fa-check-square"></i>
 					<span>Xác Nhận</span>
@@ -113,9 +120,10 @@
 			</td>     
 		</tr>
 	</table>
-
+	</form>
 
 	<?php
+	if(isset($_POST["xacnhan"])){
 	$ten="";
 	$tuoi="";
 	$sinh="";
@@ -130,8 +138,8 @@
 	if(isset($_POST["diachi"])) {  $gioitinh=$_POST["gioitinh"]; }
 	$query1="UPDATE users SET ten = '$ten', tuoi= $tuoi,sinh='$sinh',email = '$email', diachi= '$diachi',gioitinh='$gioitinh' WHERE id=$iduser;";
 	$result1 = mysqli_query($link,$query1);
-if(isset($_POST["xacnhan"])){
-	
+
+	header("location:m_index.php?id=".$iduser);
 }
 ?>
 </div>

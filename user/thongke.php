@@ -6,10 +6,8 @@
 ?>
 
 <?php
-	$query="SELECT idcauhoi,thongtin FROM cauhoi";
+	$query="SELECT idchude,thongtin,more,pub FROM chude where pub='1' group by idchude DESC";
 	$result = mysqli_query($link,$query);
-	$query1="SELECT * FROM diadiem";
-	$result1 = mysqli_query($link,$query1);
 	
 ?>
 <?php
@@ -56,6 +54,7 @@
         </a>
     </li>
 	
+	
 </ul>
 
 <div class="index">
@@ -63,58 +62,25 @@
 		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
 		
 	</div>
-	<form action="" class="danhsach"  method="post">
-		<h3>Chọn nơi bạn muốn xem !</h3>
-		<select name="thanhpho">
-		<?php
-			if(mysqli_num_rows($result1)>0){
-				while($row = mysqli_fetch_assoc($result1)){ ?>
-					<option value="<?php echo $row['id'];?>"> <?php echo $row['thongtin'];?></option>
-					<?php
-				}
-			}?>	
-		</select>
-		<button name ="xacnhan" type="submit" >Xác nhận</button>
-	<?php
-		if(isset($_POST["xacnhan"])){
-			$iddiadiem=$_POST["thanhpho"];
-		}else{
-			$iddiadiem=1;
-		}
-		
-	?>
-	
-	</form>
+	<form action=""  method="post">
+
 	<div class="lthongke">
 	<?php
 			if(mysqli_num_rows($result)>0){
 				while($row = mysqli_fetch_assoc($result)){ ?>
-					<p class = "cauhoi"><?php echo $row['thongtin']; ?></p>
-					<?php
-						$da=$row['idcauhoi'];
-						$query1="SELECT thongtin,idtraloi FROM traloi where idcauhoi=$da";
-						$result1 = mysqli_query($link,$query1);?>
-						<table class="ldapan">
-						<?php while($row1 = mysqli_fetch_assoc($result1)){ ?>
-							<tr>
-								<td><?php echo $row1['thongtin']; ?></td>
-								<td> 
-									<?php
-										$traloi=$row1['idtraloi'];
-										$query2="SELECT count(k.idtraloi) as `sl` FROM diadiem d INNER JOIN ketqua k ON d.id = k.iddiadiem WHERE d.id= $iddiadiem AND k.idtraloi=$traloi;";
-										$result2 = mysqli_query($link,$query2);
-										$row2 = mysqli_fetch_assoc($result2);
-										echo $row2['sl'];
-									?>
-								</td>
-							
-							</tr>
-							<?php
-						}?>
-						</table> <?php
+					<table>
+					<tr>
+						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
+							<i class="fas fa-arrow-right"></i>
+							<span><?php echo $row['thongtin']; ?></span>
+						</a>
+						<p class="more"><?php echo $row['more']; ?></td>
+					</tr>
+					</table>
+					 <?php
 				}
 	}?>
-	</div>
+	</form>
 	
 	
 	

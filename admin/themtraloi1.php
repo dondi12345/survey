@@ -3,7 +3,8 @@
 	mysqli_query($link,'SET NAMES UTF8');
 	include('m_top.php');
 	$iduser=$_GET['id'];
-	$ic=$_GET['ic'];	
+	$ic=$_GET['ic'];
+	$sl=0;
 ?>
 
 <?php
@@ -80,23 +81,67 @@
 	</div>
 	<div class="lthongke">
 		<form action="" method="post">
-			<table>
-			<tr>
-				<td>Chọn kiểu câu hỏi:<td>
-				<td><select name="loai">
-					<option value="1">1 lựa chọn</option>
-        			<option value="2">Nhiều lựa chọn</option>
-					<option value="3">Nhập nội dung</option>
-				</select></td>
-				<td><input type="submit" name="xn" value="Xác nhận" >
-			<tr>
-			
-			</table>
+				<table>
+					<tr>
+						<td>Nhập số lượng câu trả lời:<td>
+						<td><input type="text" class="nhapsl" size="2" name="sl" value=""></td>
+						<td><input type="submit" name="sltl" value="Xác nhận" >
+					<tr>
+				</table>
+				<?php 
+				if(isset($_POST['sltl'])){
+					if(isset($_POST['sl'])){
+					$sl=$_POST['sl'];
+					}else{
+					$sl=0;
+					}
+					?>
+					
+					<table>
+						<tr>
+							<td>Nhập câu hỏi:<td>
+							<td><input type="text" class="sch" name="nhapch" value=""></td>
+						<tr>
+					</table>
+					<table class ="traloi">
+						<?php for($i = 0; $i <$sl ; $i++){?>
+							<tr>
+								<td><input type="radio" name="stl" value="<?php echo $row1['idtraloi']; ?>"></td>
+								<td><input type="text" name="<?php echo $i; ?>" value=""></td>
+							</tr>
+						<?php }?>
+					</table>
+				<?php }?>
+				<?php if($sl>=1){ ?>
+			<button class="nonbutton themch" name="xacnhan">
+				<a class="isua" href="">
+				<i class="fas fa-plus-square"></i>
+				<span>Thêm</span>
+				</a>
+			</button>
+			<?php } ?>
 		</form>
-		<?php if(isset($_POST['xn'])){
-			echo $_POST['loai'];
-			header("location:themtraloi".$_POST['loai'].".php?id=".$iduser."&ic=".$ic);
-		}
+		<?php
+			if(isset($_POST['xacnhan'])){
+				if(isset($_POST['nhapch'])||$_POST['nhapch']!=""){
+					$getch=$_POST['nhapch'];
+					$querych="INSERT INTO cauhoi (thongtin,idloai,idchude) VALUES ('$getch','1','$ic');";
+					$resultch = mysqli_query($link,$querych);
+
+					$queryidch="SELECT idcauhoi FROM cauhoi where thongtin like '$getch' and idchude like '$ic';";
+					$resultidch = mysqli_query($link,$queryidch);
+					$rs = mysqli_fetch_assoc($resultidch);
+					$idch=$rs['idcauhoi'];
+					for($i=0;$i<100;$i++){
+						if(isset($_POST[''.$i.''])){
+							$gettl=$_POST[''.$i.''];
+							$querytl="INSERT INTO traloi (thongtin,idcauhoi) VALUES ('$gettl','$idch');";
+							$resulttl = mysqli_query($link,$querytl);
+						}
+					}
+				}
+				header("location:cauhoi.php?id=".$iduser."&ic=".$ic);
+			}
 		?>
 	</div>
 	

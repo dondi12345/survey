@@ -2,12 +2,16 @@
 	$link = new mysqli('localhost','root','','moitruong') or die('ket noi that bai!');
 	mysqli_query($link,'SET NAMES UTF8');
 	include('m_top.php');
-	$iduser=$_GET['id'];	
+	$iduser=$_GET['id'];
+	$ic=$_GET['ic'];
+	$sl=0;
 ?>
 
 <?php
-	$query="SELECT idchude,thongtin,more,pub FROM chude group by idchude DESC";
+	$query="SELECT idcauhoi,thongtin FROM cauhoi";
 	$result = mysqli_query($link,$query);
+	$query1="SELECT * FROM diadiem";
+	$result1 = mysqli_query($link,$query1);
 	
 ?>
 <?php
@@ -41,7 +45,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="thongke light" href="thongke.php?id=<?php echo $iduser ?>">
+		<a class="thongke" href="thongke.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-chart-line"></i>
 			<span>Thống kê</span>
         </a>
@@ -62,7 +66,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+		<a class="chude light" href="taochude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-bars"></i>
 			<span>Tạo chủ đề</span>
         </a>
@@ -72,31 +76,43 @@
 
 <div class="index">
 	<div class="tieude">
-		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
+		<h1>Tạo câu hỏi!   <i class="fas fa-edit"></i></h1>
 		
 	</div>
-	<form action=""  method="post">
-
 	<div class="lthongke">
-	<?php
-			if(mysqli_num_rows($result)>0){
-				while($row = mysqli_fetch_assoc($result)){ ?>
+		<form action="" method="post">
+				
 					<table>
-					<tr>
-						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
-							<i class="fas fa-arrow-right"></i>
-							<span><?php echo $row['thongtin']; ?></span>
-						</a>
-						<p class="more"><?php echo $row['more']; ?></td>
-					</tr>
+						<tr>
+							<td>Nhập câu hỏi:<td>
+							<td><input type="text" class="sch" name="nhapch" value=""></td>
+						<tr>
 					</table>
-					 <?php
+			<button class="nonbutton themch" name="xacnhan">
+				<a class="isua" href="">
+				<i class="fas fa-plus-square"></i>
+				<span>Thêm</span>
+				</a>
+			</button>
+		</form>
+		<?php
+			if(isset($_POST['xacnhan'])){
+				if(isset($_POST['nhapch'])||$_POST['nhapch']!=""){
+					$getch=$_POST['nhapch'];
+					$querych="INSERT INTO cauhoi (thongtin,idloai,idchude) VALUES ('$getch','3','$ic');";
+					$resultch = mysqli_query($link,$querych);
+
+					$queryidch="SELECT idcauhoi FROM cauhoi where thongtin like '$getch' and idchude like '$ic' ;";
+					$resultidch = mysqli_query($link,$queryidch);
+					$rs = mysqli_fetch_assoc($resultidch);
+					$idch=$rs['idcauhoi'];
+							$querytl="INSERT INTO traloi (thongtin,idcauhoi) VALUES ('Số người đã trả lời :','$idch');";
+							$resulttl = mysqli_query($link,$querytl);
 				}
-	}?>
-	</form>
-	
-	
-	
+				header("location:cauhoidangtao.php?id=".$iduser."&ic=".$ic);
+			}
+		?>
+	</div>
 	
 	
 </div>

@@ -53,11 +53,18 @@
 			<span>Lich sử</span>
         </a>
     </li>
+		
+	<li class="muc">
+		<a class="chude" href="chude.php?id=<?php echo $iduser ?>">
+			<i class="fas fa-stream"></i>
+			<span>Chủ đề</span>
+        </a>
+    </li>
 	
 	<li class="muc">
-		<a class="lichsu" href="cauhoi.php?id=<?php echo $iduser ?>">
-			<i class="far fa-question-circle"></i>
-			<span>Câu hỏi</span>
+		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+			<i class="fas fa-bars"></i>
+			<span>Tạo chủ đề</span>
         </a>
     </li>
 	

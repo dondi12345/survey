@@ -19,6 +19,9 @@ header {
 	background-color: #343a40;
 	position: relative;
 	padding: 0.5rem 1rem;
+	width: 200vh;
+	position:fixed;
+	z-index:1;
 }
 
 
@@ -59,7 +62,9 @@ header {
   float:left;
   padding-top:3;
   height: 100vh;
-  position:absolute;
+  position:fixed;
+  margin-top:55px;
+ 
 }
 
 .muc{
@@ -88,6 +93,7 @@ header {
 	width:86%;
 	position:absolute;
 	margin-left:14%;
+	margin-top:55px;
 }
 
 .daidien{
@@ -209,10 +215,82 @@ table {
 	font-size:20px;
 }
 
+.them{
+	color:green;
+	border: none;
+	outline: none;
+	float:none;
+	cursor: pointer;
+	background:white;
+	font-size:30px;
+	margin-left:40%;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.them a{
+	color:green;
+}
 
+.themtl{
+	border: none;
+	outline: none;
+	float:none;
+	cursor: pointer;
+	background:white;
+	font-size:20px;
+}
 
+.nonbutton{
+	border: none;
+	outline: none;
+	float:none;
+	cursor: pointer;
+	background:white;
+}
 
+.themtl a{
+	color:black;
+}
 
+.sch{
+	font-size:25px;
+	color: blue;
+}
+
+.vch a{
+	font-size:25px;
+}
+
+.vtl a{
+	font-size:20px;
+}
+
+.themch {
+	margin-left:25%;
+	margin-top:21px;
+}
+
+.themch a{
+	color:green;
+	font-size:20px;
+}
+
+.more {
+	margin-left:30px;
+}
+
+.scd{
+	font-size:25px;
+	color: blue;
+}
+
+.vcd a{
+	font-size:25px;
+}
+
+.themcd{
+	margin-left:30%;
+}
 
 
 

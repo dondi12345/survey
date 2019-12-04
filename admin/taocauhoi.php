@@ -2,12 +2,15 @@
 	$link = new mysqli('localhost','root','','moitruong') or die('ket noi that bai!');
 	mysqli_query($link,'SET NAMES UTF8');
 	include('m_top.php');
-	$iduser=$_GET['id'];	
+	$iduser=$_GET['id'];
+	$ic=$_GET['ic'];
 ?>
 
 <?php
-	$query="SELECT idchude,thongtin,more,pub FROM chude group by idchude DESC";
+	$query="SELECT idcauhoi,thongtin FROM cauhoi where idchude='$ic'";
 	$result = mysqli_query($link,$query);
+	$query1="SELECT * FROM diadiem";
+	$result1 = mysqli_query($link,$query1);
 	
 ?>
 <?php
@@ -41,7 +44,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="thongke light" href="thongke.php?id=<?php echo $iduser ?>">
+		<a class="thongke" href="thongke.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-chart-line"></i>
 			<span>Thống kê</span>
         </a>
@@ -55,7 +58,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="chude" href="chude.php?id=<?php echo $iduser ?>">
+		<a class="chude light" href="chude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-stream"></i>
 			<span>Chủ đề</span>
         </a>
@@ -72,7 +75,7 @@
 
 <div class="index">
 	<div class="tieude">
-		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
+		<h1>Câu hỏi!   <i class="fas fa-edit"></i></h1>
 		
 	</div>
 	<form action=""  method="post">
@@ -83,18 +86,35 @@
 				while($row = mysqli_fetch_assoc($result)){ ?>
 					<table>
 					<tr>
-						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
-							<i class="fas fa-arrow-right"></i>
-							<span><?php echo $row['thongtin']; ?></span>
-						</a>
-						<p class="more"><?php echo $row['more']; ?></td>
-					</tr>
+						<td><p class = "cauhoi"><?php echo $row['thongtin']; ?></p></td>
+						<td><a class="lichsu light" href="suach.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idcauhoi']; ?>">
+						<i class="fas fa-edit"></i></h1>
+						</a></td>
+					<tr>
 					</table>
-					 <?php
+					<?php
+						$da=$row['idcauhoi'];
+						$query1="SELECT thongtin,idtraloi FROM traloi where idcauhoi=$da";
+						$result1 = mysqli_query($link,$query1);?>
+						<table class="ldapan">
+						<?php while($row1 = mysqli_fetch_assoc($result1)){ ?>
+							<tr>
+								<td><input type="radio" name="<?php echo $da; ?>" value="<?php echo $row1['idtraloi']; ?>"></td>
+								<td><?php echo $row1['thongtin']; ?></td>
+							</tr>
+							<?php
+						}?>
+						</table> <?php
 				}
 	}?>
+	</div>
+		<div class="them">
+			<a class="isua" href="themch.php?id=<?php echo $iduser ?>">
+			<i class="fas fa-plus-square"></i>
+			<span>Thêm</span>
+			</a>
+		</div>
 	</form>
-	
 	
 	
 	

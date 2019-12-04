@@ -14,16 +14,12 @@ body {
 	margin-top:100px;
 	text-align: left;
 }
-.cauhoi{
-	color: black;
-	font-size : 25px;
-}
 input[type="radio"] {
 	
 }
 .dapan{
 	color: rgb(65, 65, 65);
-	font-size : 15px;
+	font-size : 20px;
 }
 
 input[type="submit"] {
@@ -43,4 +39,33 @@ input[type="submit"]:hover {
     background-color: rgb(230, 199, 0);
 	font-weight: bold;
     color: rgb(30, 120, 10);
+}
+
+table {
+  border-collapse: collapse;
+  text-align:center-left ;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  font-size:20px;
+}
+
+.more {
+	margin-left:30px;
+}
+tr {
+	margin-bottom:50px;
+}
+
+h1 {
+	width:100%;
+	text-align:center;
+	margin-bottom:30px;
+}
+
+.cauhoi{
+	color:blue;
+	font-size:30px;
 }

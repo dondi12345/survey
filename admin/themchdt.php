@@ -2,12 +2,15 @@
 	$link = new mysqli('localhost','root','','moitruong') or die('ket noi that bai!');
 	mysqli_query($link,'SET NAMES UTF8');
 	include('m_top.php');
-	$iduser=$_GET['id'];	
+	$iduser=$_GET['id'];
+	$ic=$_GET['ic'];	
 ?>
 
 <?php
-	$query="SELECT idchude,thongtin,more,pub FROM chude group by idchude DESC";
+	$query="SELECT idcauhoi,thongtin FROM cauhoi";
 	$result = mysqli_query($link,$query);
+	$query1="SELECT * FROM diadiem";
+	$result1 = mysqli_query($link,$query1);
 	
 ?>
 <?php
@@ -41,7 +44,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="thongke light" href="thongke.php?id=<?php echo $iduser ?>">
+		<a class="thongke" href="thongke.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-chart-line"></i>
 			<span>Thống kê</span>
         </a>
@@ -62,7 +65,7 @@
     </li>
 	
 	<li class="muc">
-		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+		<a class="chude light" href="taochude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-bars"></i>
 			<span>Tạo chủ đề</span>
         </a>
@@ -72,31 +75,30 @@
 
 <div class="index">
 	<div class="tieude">
-		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
+		<h1>Tạo câu hỏi!   <i class="fas fa-edit"></i></h1>
 		
 	</div>
-	<form action=""  method="post">
-
 	<div class="lthongke">
-	<?php
-			if(mysqli_num_rows($result)>0){
-				while($row = mysqli_fetch_assoc($result)){ ?>
-					<table>
-					<tr>
-						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
-							<i class="fas fa-arrow-right"></i>
-							<span><?php echo $row['thongtin']; ?></span>
-						</a>
-						<p class="more"><?php echo $row['more']; ?></td>
-					</tr>
-					</table>
-					 <?php
-				}
-	}?>
-	</form>
-	
-	
-	
+		<form action="" method="post">
+			<table>
+			<tr>
+				<td>Chọn kiểu câu hỏi:<td>
+				<td><select name="loai">
+					<option value="1">1 lựa chọn</option>
+        			<option value="2">Nhiều lựa chọn</option>
+					<option value="3">Nhập nội dung</option>
+				</select></td>
+				<td><input type="submit" name="xn" value="Xác nhận" >
+			<tr>
+			
+			</table>
+		</form>
+		<?php if(isset($_POST['xn'])){
+			echo $_POST['loai'];
+			header("location:themtraloidt".$_POST['loai'].".php?id=".$iduser."&ic=".$ic);
+		}
+		?>
+	</div>
 	
 	
 </div>

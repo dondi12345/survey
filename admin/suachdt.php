@@ -63,14 +63,14 @@
     </li>
 	
 	<li class="muc">
-		<a class="chude light" href="chude.php?id=<?php echo $iduser ?>">
+		<a class="chude" href="chude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-stream"></i>
 			<span>Chủ đề</span>
         </a>
     </li>
 	
 	<li class="muc">
-		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
+		<a class="chude light" href="taochude.php?id=<?php echo $iduser ?>">
 			<i class="fas fa-bars"></i>
 			<span>Tạo chủ đề</span>
         </a>
@@ -109,12 +109,12 @@
 										$querych="UPDATE cauhoi SET thongtin ='$nhap' WHERE idcauhoi=$ih;";
 										$resultch = mysqli_query($link,$querych);
 										}
-										header("location:suach.php?id=".$iduser."&ic=".$ic."&ih=".$ih);
+										header("location:suachdt.php?id=".$iduser."&ic=".$ic."&ih=".$ih);
 								}
 								if(isset($_POST["xoach"])){
 										$queryxch="DELETE FROM  cauhoi WHERE idcauhoi='$ih';";
 										$resultxch = mysqli_query($link,$queryxch);							
-										header("location:cauhoi.php?id=".$iduser."&ic=".$ic);
+										header("location:cauhoidangtao.php?id=".$iduser."&ic=".$ic);
 								}
 							?>
 						</form>
@@ -130,7 +130,7 @@
 								<form action="" method="post">
 									<td><input type="radio" name="stl" value="<?php echo $row1['idtraloi']; ?>"></td>
 									<td><input type="text" name="<?php echo $da; ?>" value="<?php echo $row1['thongtin']; ?>"></td>
-									<td><a class="xtl" href="xoatl.php?id=<?php echo $iduser?>&i=<?php echo $row1['idtraloi'];?>">
+									<td><a class="xtl" href="xoatldt.php?id=<?php echo $iduser?>&i=<?php echo $row1['idtraloi'];?>">
 										<i class="far fa-trash-alt"></i>
 										</a>
 									</td>
@@ -162,7 +162,7 @@
 										$query2="INSERT INTO traloi (thongtin,idcauhoi) VALUES ('$nhap',$ih);";
 										$result2 = mysqli_query($link,$query2);
 										}
-										header("location:suach.php?id=".$iduser."&ic=".$ic."&ih=".$ih);
+										header("location:suachdt.php?id=".$iduser."&ic=".$ic."&ih=".$ih);
 										ob_enf__flush();
 									}					
 									

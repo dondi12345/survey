@@ -9,5 +9,5 @@
 	$ih=$row['idcauhoi'];
 	$queryx="DELETE FROM traloi where idtraloi=$i";
 	$resultx = mysqli_query($link,$queryx);
-	header("location:suach.php?id=".$iduser."&ic=".$ic."&ih=".$ih);
+	header("location:suachdt.php?id=".$iduser."&ic=".$ic."&ih=".$ih);
 ?>

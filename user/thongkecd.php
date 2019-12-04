@@ -2,11 +2,12 @@
 	$link = new mysqli('localhost','root','','moitruong') or die('ket noi that bai!');
 	mysqli_query($link,'SET NAMES UTF8');
 	include('m_top.php');
-	$iduser=$_GET['id'];	
+	$iduser=$_GET['id'];
+	$ic=$_GET['ic'];	
 ?>
 
 <?php
-	$query="SELECT idchude,thongtin,more,pub FROM chude group by idchude DESC";
+	$query="SELECT idcauhoi,thongtin FROM cauhoi where idchude='$ic'";
 	$result = mysqli_query($link,$query);
 	
 ?>
@@ -54,19 +55,6 @@
         </a>
     </li>
 	
-	<li class="muc">
-		<a class="chude" href="chude.php?id=<?php echo $iduser ?>">
-			<i class="fas fa-stream"></i>
-			<span>Chủ đề</span>
-        </a>
-    </li>
-	
-	<li class="muc">
-		<a class="chude" href="taochude.php?id=<?php echo $iduser ?>">
-			<i class="fas fa-bars"></i>
-			<span>Tạo chủ đề</span>
-        </a>
-    </li>
 	
 </ul>
 
@@ -75,26 +63,37 @@
 		<h1>Thống kê!   <i class="far fa-hand-point-down"></i></h1>
 		
 	</div>
-	<form action=""  method="post">
 
 	<div class="lthongke">
 	<?php
 			if(mysqli_num_rows($result)>0){
 				while($row = mysqli_fetch_assoc($result)){ ?>
-					<table>
-					<tr>
-						<td><a class="" href="thongkecd.php?id=<?php echo $iduser ?>&ic=<?php echo $row['idchude']; ?>">
-							<i class="fas fa-arrow-right"></i>
-							<span><?php echo $row['thongtin']; ?></span>
-						</a>
-						<p class="more"><?php echo $row['more']; ?></td>
-					</tr>
-					</table>
-					 <?php
+					<p class = "cauhoi"><?php echo $row['thongtin']; ?></p>
+					<?php
+						$da=$row['idcauhoi'];
+						$query1="SELECT thongtin,idtraloi FROM traloi where idcauhoi=$da";
+						$result1 = mysqli_query($link,$query1);?>
+						<table class="ldapan">
+						<?php while($row1 = mysqli_fetch_assoc($result1)){ ?>
+							<tr>
+								<td><?php echo $row1['thongtin']; ?></td>
+								<td> 
+									<?php
+										$traloi=$row1['idtraloi'];
+										$query2="SELECT count(k.idtraloi) as `sl` FROM  ketqua k WHERE k.idtraloi=$traloi;";
+										$result2 = mysqli_query($link,$query2);
+										$row2 = mysqli_fetch_assoc($result2);
+										echo $row2['sl'];
+									?>
+								</td>
+							
+							</tr>
+							<?php
+						}?>
+						</table> <?php
 				}
 	}?>
-	</form>
-	
+	</div>
 	
 	
 	
